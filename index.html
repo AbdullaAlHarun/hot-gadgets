@@ -13,11 +13,19 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="styles.css">
     </head>
-<body>
+<body class="bg-slate-600">
     <header class="ml-4 mr-4 lg:ml-32 lg:mr-32">
-        <h2>Hot Gadgates</h2>
+        <h2 class="text-4xl text-white">Hot Gadgates</h2>
+       
     </header>
     <main class="ml-4 mr-4 lg:ml-32 lg:mr-32 mt-8">
+       <section>
+        <div class="bg-gray-100 p-4 my-4 rounded-lg">
+            <input id="search-feild" type="text" placeholder="Search..." class="input input-bordered w-full max-w-xs" />
+            <button onclick="handleSearch()" class="btn btn-accent">SEARCH</button>
+        </div>
+       </section>
+       
         <section>
             <div id="phone-container" class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 
