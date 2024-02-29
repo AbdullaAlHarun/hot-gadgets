@@ -5,12 +5,23 @@ const loadPhone = async (searchText) => {
     // console.log(phone)
     displayPhones(phones);
 }   
-const displayPhones = phones =>{
+const displayPhones = phones => {
     // console.log(phones);
 const phoneContainer = document.getElementById('phone-container');
- // clear container card before adding new card! 
+ 
+// clear container card before adding new card! 
+ phoneContainer.textContent = '';
+    //Display show all button if there are more then 12 items! 
+    
+    const showAllContainer = document.getElementById('show-all-container');
+    if(phones.length > 12){
+        showAllContainer.classList.remove('hidden')
+    } else {
+        showAllContainer.classList.add('hidden')
+    }
 
- phoneContainer.textContent = ''
+    //display only 12 phone!
+    phones = phones.slice(0,12);
 
     phones.forEach(phone => {
         const phoneCard = document.createElement('div');
@@ -27,7 +38,7 @@ const phoneContainer = document.getElementById('phone-container');
                     </div>
             </div>
         `;
-        phoneContainer.appendChild(phoneCard)
+        phoneContainer.appendChild(phoneCard);
     });
 }
 
@@ -35,7 +46,14 @@ const phoneContainer = document.getElementById('phone-container');
 const handleSearch = () => {
     const searchField = document.getElementById('search-feild');
     const searchText = searchField.value;
-    console.log(searchText)
+    loadPhone(searchText);
+}
+
+//another search button 
+
+const handleSearch2 = () => {
+    const searchField = document.getElementById('search-feild2');
+    const searchText = searchField.value;
     loadPhone(searchText);
 }
 
