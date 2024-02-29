@@ -13,7 +13,9 @@ const phoneContainer = document.getElementById('phone-container');
  phoneContainer.textContent = '';
     //Display show all button if there are more then 12 items! 
     
+
     const showAllContainer = document.getElementById('show-all-container');
+
     if(phones.length > 12){
         showAllContainer.classList.remove('hidden')
     } else {
@@ -50,11 +52,16 @@ const handleSearch = () => {
 }
 
 //another search button 
-
 const handleSearch2 = () => {
+    toggleLoadingSpinner()
     const searchField = document.getElementById('search-feild2');
     const searchText = searchField.value;
     loadPhone(searchText);
+}
+
+const toggleLoadingSpinner = () => {
+    const loadingSpinner = document.getElementById('loading-spinner');
+    loadingSpinner.classList.remove('hidden')
 }
 
 
