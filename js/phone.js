@@ -38,8 +38,8 @@ const phoneContainer = document.getElementById('phone-container');
             <div class="card-body">
                 <h2 class="card-title">${phone.phone_name}</h2>
                 <p>If a dog chews shoes whose shoes does he choose?</p>
-                    <div class="card-actions justify-end">
-                        <button class="btn btn-primary">Buy Now</button>
+                    <div class="card-actions justify-center">
+                        <button onclick="handelShowDetails('${phone.slug}')" class="btn btn-primary">Show Details</button>
                     </div>
             </div>
         `;
@@ -48,6 +48,12 @@ const phoneContainer = document.getElementById('phone-container');
 
     //hide loading spinner 
     toggleLoadingSpinner(false);
+}
+
+// Handel Show details modal 
+
+const handelShowDetails = async (id) => {
+    const res = await fetch (`https://openapi.programming-hero.com/api/phones?search=${id}`);
 }
 
 //handle Search Button 
