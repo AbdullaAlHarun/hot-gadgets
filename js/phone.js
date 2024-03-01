@@ -1,11 +1,11 @@
-const loadPhone = async (searchText) => {
+const loadPhone = async (searchText, isShowAll) => {
     const res = await fetch (`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
     const data = await res.json();
     const phones = data.data;
     // console.log(phone)
-    displayPhones(phones);
+    displayPhones(phones, isShowAll);
 }   
-const displayPhones = phones => {
+const displayPhones = (phones, isShowAll) => {
     // console.log(phones);
 const phoneContainer = document.getElementById('phone-container');
  
@@ -16,14 +16,17 @@ const phoneContainer = document.getElementById('phone-container');
 
     const showAllContainer = document.getElementById('show-all-container');
 
-    if(phones.length > 12){
+    if(phones.length > 12 && !isShowAll ){
         showAllContainer.classList.remove('hidden')
     } else {
         showAllContainer.classList.add('hidden')
     }
 
-    //display only 12 phone!
-    phones = phones.slice(0,12);
+    //display only 12 phone! If not show all! 
+    if(!isShowAll){
+        phones = phones.slice(0,12);
+    }
+    
 
     phones.forEach(phone => {
         const phoneCard = document.createElement('div');
@@ -48,20 +51,20 @@ const phoneContainer = document.getElementById('phone-container');
 }
 
 //handle Search Button 
-const handleSearch = () => {
+const handleSearch = (isShowAll) => {
     toggleLoadingSpinner(true)
     const searchField = document.getElementById('search-feild');
     const searchText = searchField.value;
-    loadPhone(searchText);
+    loadPhone(searchText, isShowAll);
 }
 
-//another search button 
-const handleSearch2 = () => {
-    toggleLoadingSpinner(true)
-    const searchField = document.getElementById('search-feild2');
-    const searchText = searchField.value;
-    loadPhone(searchText);
-}
+// //another search button 
+// const handleSearch2 = () => {
+//     toggleLoadingSpinner(true)
+//     const searchField = document.getElementById('search-feild2');
+//     const searchText = searchField.value;
+//     loadPhone(searchText);
+// }
 
 const toggleLoadingSpinner = (isLoading) => {
     const loadingSpinner = document.getElementById('loading-spinner');
@@ -73,5 +76,10 @@ const toggleLoadingSpinner = (isLoading) => {
     }
 }
 
+//handel show all 
+
+const handelShowAll = () => {
+    handleSearch(true);
+}
 
 // loadPhone();
